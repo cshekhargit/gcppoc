@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: gcpdemoservice
+  labels:
+    app: gcpdemoservice
+spec:
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: gcpdemoservice
+        tier: compute
+    spec:
+      containers:
+       - name: gcpdemoservice
+
+         image: gcr.io/wise-philosophy-221104/github.com/cshekhargit/gcppoc
+         ports:
+         - containerPort: 8080
+
+      imagePullSecrets:
+       - name: cs1secret

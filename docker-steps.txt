@@ -1,0 +1,12 @@
+docker run --rm -d --network host --name my_nginx nginx
+
+docker run -it abhinav -p 8888:8080 
+
+docker run --rm -d --network host -it abhinav -p 8888:8080
+
+docker run -it abhinav -p 8888:8080 --network host
+
+https://www.youtube.com/watch?v=FlSup_eelYE
+
+docker build -t om .
+docker run -p 8081:8081 om
