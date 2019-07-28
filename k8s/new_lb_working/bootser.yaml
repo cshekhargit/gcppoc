@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    run: bootcamp
+  name: bootcamp
+spec:
+  ports:
+  - port: 8081
+    protocol: TCP
+    targetPort: 8081
+  selector:
+    run: bootcamp
+  type: LoadBalancer
+status:
+  loadBalancer: {}

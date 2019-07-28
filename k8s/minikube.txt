@@ -1,0 +1,37 @@
+kubectl run hello-minikube --image=gcr.io/google_containers/echoserver:1.4 --port=8080
+deployment "hello-minikube" created
+$ kubectl expose deployment hello-minikube --type=NodePort
+service "hello-minikube" exposed
+$ kubectl get svc
+NAME             CLUSTER-IP   EXTERNAL-IP   PORT(S)    AGE
+hello-minikube   10.0.0.102   <nodes>       8080/TCP   7s
+kubernetes       10.0.0.1     <none>        443/TCP    13m
+
+$ minikube service hello-minikube
+Opening kubernetes service default/hello-minikube in default browser...
+
+$ minikube service hello-minikube --url
+http://192.168.99.100:31167
+
+Sudo minikube ip
+-----------port forwarding--------
+get the current port of your pod
+kubectl get pods redis-master-765d459796-258hz --template='{{(index (index .spec.containers 0).ports 0).containerPort}}{{"\n"}}'
+
+output: 6379
+
+kubectl port-forward redis-master-765d459796-258hz 7000:6379
+
+Now your service is expolse to 127.0.0.1:7000
+
+---------------Loadbalancer working example--------
+kubectl run bootcamp --image=docker.io/jocatalin/kubernetes-bootcamp:v1 --port=8080
+kubectl expose deployment/bootcamp --type="LoadBalancer" --port 8080
+$ export EXTERNAL_IP=$(kubectl get service bootcamp --output=jsonpath='{.status.loadBalancer.ingress[0].ip}')
+$ export PORT=$(kubectl get services --output=jsonpath='{.items[0].spec.ports[0].port}')
+$ curl "$EXTERNAL_IP:$PORT"
+
+--------
+kubectl run bootcamp --image=docker.io/jocatalin/kubernetes-bootcamp:v1 --port=8080 --dry-run -oyaml > k8s/bootdep.yaml
+kubectl run bootcamp --image=docker.io/jocatalin/kubernetes-bootcamp:v1 --port=8080
+kubectl expose deployment/bootcamp --type="LoadBalancer" --port 8080 --dry-run -oyaml > k8s/bootser.yaml
