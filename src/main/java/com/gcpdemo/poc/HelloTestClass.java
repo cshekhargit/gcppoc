@@ -10,6 +10,13 @@ import org.slf4j.LoggerFactory;
 public class HelloTestClass {
 	private final Logger logger = LoggerFactory.getLogger(HelloTestClass.class);
 	
+	@RequestMapping("/")
+	public String helloOk()
+	{
+		logger.info("This is a from home page");
+		return "Calling from / home page";
+	}
+	
 	@RequestMapping("/hello")
 public String helloTest()
 {
