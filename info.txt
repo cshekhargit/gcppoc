@@ -4,3 +4,7 @@ http://localhost:8081/actuator/health -GET
 For logger:
 keep credentials json file on root and configure as per
 https://github.com/googleapis/google-cloud-java/tree/master/google-cloud-clients/google-cloud-contrib/google-cloud-logging-logback
+
+
+https://github.com/spring-cloud/spring-cloud-gcp/issues/191
+https://stackoverflow.com/questions/44164730/gke-stackdriver-java-logback-logging-format

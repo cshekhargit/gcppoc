@@ -15,21 +15,15 @@
 -->
 <!-- [START logging_logback_config] -->
 <configuration>
-  <appender name="CLOUD" class="com.google.cloud.logging.logback.LoggingAppender">
-    <!-- Optional : filter logs at or above a level -->
-    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-      <level>INFO</level>
-    </filter>
-    <log>application.log</log> <!-- Optional : default java.log -->
-    <!-- Optional : will use the default credentials of the environment if this property is not set -->
-    <credentialsFile>wise-philosophy-221104-77000941875b.json</credentialsFile>
-    <enhancer>com.example.enhancers.TestLoggingEnhancer</enhancer> <!-- Optional -->
-    <enhancer>com.example.enhancers.AnotherEnhancer</enhancer> <!-- Optional -->
-    <flushLevel>WARN</flushLevel> <!-- Optional : default ERROR -->
-  </appender>
-
-  <root level="info">
-    <appender-ref ref="CLOUD" />
-  </root>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="logging.GCPCloudLoggingJSONLayout">
+                <pattern>%-4relative [%thread] %-5level %logger{35} - %msg</pattern>
+            </layout>
+        </encoder>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
 </configuration>
 <!-- [END logging_logback_config] -->

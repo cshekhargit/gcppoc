@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 public class HelloTestClass {
 	private final Logger logger = LoggerFactory.getLogger(HelloTestClass.class);
 	
+	
 	@RequestMapping("/")
 	public String helloOk()
 	{
