@@ -24,6 +24,7 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-actuator")
 	implementation 'org.springframework.cloud:spring-cloud-gcp-starter'
 	compile 'com.google.cloud:google-cloud-logging-logback:0.102.0-alpha'
+	compile 'org.springframework.cloud:spring-cloud-gcp-starter-trace'
 	
 }
 

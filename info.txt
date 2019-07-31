@@ -8,3 +8,7 @@ https://github.com/googleapis/google-cloud-java/tree/master/google-cloud-clients
 
 https://github.com/spring-cloud/spring-cloud-gcp/issues/191
 https://stackoverflow.com/questions/44164730/gke-stackdriver-java-logback-logging-format
+
+Adding default credentials to machine
+set GOOGLE_APPLICATION_CREDENTIALS="F:\Chandra\Work\July\16_July\gcppoc\src\main\resources\wise-philosophy-221104-77000941875b.json"
+
