@@ -1,0 +1,7 @@
+steps:
+- name: 'gcr.io/cloud-builders/gradle'
+  args: ['build']
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/wise-philosophy-221104/gcppoc', '.']
+images: ['gcr.io/wise-philosophy-221104/gcppoc']
