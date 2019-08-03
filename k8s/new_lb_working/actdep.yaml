@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: bootcamp
+  name: bootcamp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: bootcamp
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: bootcamp
+    spec:
+      containers:
+      - image: gcr.io/wise-philosophy-221104/github.com/cshekhargit/gcppoc
+        name: bootcamp
+        ports:
+        - containerPort: 8081
+        readinessProbe:
+          httpGet:
+            path: /alive
+            port: 8081
+          initialDelaySeconds: 10
+          timeoutSeconds: 2
+          periodSeconds: 3
+          failureThreshold: 1
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8081
+          initialDelaySeconds: 20
+          timeoutSeconds: 2
+          periodSeconds: 8
+          failureThreshold: 1
+
+      imagePullSecrets:
+       - name: cs1secret
