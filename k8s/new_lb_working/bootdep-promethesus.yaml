@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    run: bootcamp
+  name: bootcamp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: bootcamp
+    annotations:
+      prometheus.io/path: "actuator/prometheus"
+      prometheus.io/port: "8082"
+      prometheus.io/scrape: "true"
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: bootcamp
+    spec:
+      containers:
+      - image: gcr.io/wise-philosophy-221104/github.com/cshekhargit/gcppoc
+        name: bootcamp
+        ports:
+        - containerPort: 8081
+
+      imagePullSecrets:
+       - name: cs1secret
